@@ -103,14 +103,14 @@ build_service() {
 	else
 		CGO_ENABLED=0
 	fi
-	if ["$directory" != "myetcd" && "$directory" != "mynats"]; then
+	if [[ "$binary" != "myetcd" ]] && [[ "$binary" != "mynats" ]]; then
 	    rm -rf $BUILD_DIR/src/$source/deployment/$directory/$binary
 	    GOOS=linux GOARCH=amd64 go build --v -gcflags "-N -l" -o $BUILD_DIR/src/$source/deployment/$directory/$binary main.go
 	    [ $? -ne 0  ] && exit 1
         else
 	    rm -rf $BUILD_DIR/src/$source/deployment/$directory/$binary
-	    mkdir -p $BUILD_DIR/src/$source/deployment/$directory/$binary
-            cp ./$binary $BUILD_DIR/src/$source/deployment/$directory/$binary
+	    mkdir -p $BUILD_DIR/src/$source/deployment/$directory
+            cp ./$binary $BUILD_DIR/src/$source/deployment/$directory
 	    [ $? -ne 0  ] && exit 1
 	fi
 }
