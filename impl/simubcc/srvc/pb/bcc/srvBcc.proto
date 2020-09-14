@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+//Path: ./
+import "mhdr.proto";
+import "common.proto";
+
+//package srvBcc defines the service provided by module bccSvc
+package srvBcc;
+
+service Bcc {
+    //service provided to GW to submit non-setup bearer context message
+    rpc SubmitBearerCtxMsg (SubmitBearerCtxMsgReq) returns (SubmitBearerCtxMsgRsp) {}
+    //service provided to intfmgr to submit release bearer context message
+    rpc SubmitReleaseCtxMsg (ReleaseCtxReq) returns (ReleaseCtxRsp) {}
+}
+
+//method must be unique , no change in the service scope
+enum method{
+    MethodUnknown = 0;
+    MethodSubmitBearerCtxMsgReq = 1;
+    MethodSubmitBearerCtxMsgRsp = 2;
+    MethodSubmitReleaseCtxMsgReq = 3;
+    MethodSubmitReleaseCtxMsgRsp = 4;
+}
+
+enum version{
+    VerUnknown= 0;
+    Ver = 1;
+}
+
+
+message SubmitBearerCtxMsgReq {
+    // The msghdr shall always be defined as hdr in all messages , the generated code is used as common code
+    mhdr.MsgHdr hdr = 10;
+    common.SctpCntrlInfo sctp_cntrl_info = 20;
+    bytes msg = 30;
+    common.MsgType msgType = 40;
+
+}
+
+message SubmitBearerCtxMsgRsp {
+    // The msghdr shall always be defined as hdr in all messages ,  the generated code is used as common code
+    mhdr.MsgHdr hdr = 10;
+}
+
+message ReleaseCtxReq {
+    // The msghdr shall always be defined as hdr in all messages , the generated code is used as common code
+    mhdr.MsgHdr hdr = 10;
+    bool releaseAll = 20;
+    repeated uint32 cpUeE1ApID = 30;
+    repeated uint32 upUeE1ApID = 40;
+}
+
+message ReleaseCtxRsp {
+    // The msghdr shall always be defined as hdr in all messages ,  the generated code is used as common code
+    mhdr.MsgHdr hdr = 10;
+}

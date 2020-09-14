@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package common;
+
+enum SctpUser {
+    X2AP = 0;
+    NGAP = 1;
+    XNAP = 2;
+    F1AP = 3;
+    E1AP = 4;
+    UNDEFINED = 5;
+}
+
+message SctpCntrlInfo {
+    SctpUser sctp_user = 10;
+    uint32 ref_id = 20;  //For E1 interface, ref_id is CP ID, ranges from 0 to CPNum-1 
+    uint32 assoc_id = 30; //assoc_id is the id of one certain association between a CP/IWF pair. For E1 inteface, it ranges from 0 to 31
+}
+
+enum IpAddressType
+{
+    IPV4 = 0;
+    IPV6 = 1;
+}
+
+message IpAddress {
+    IpAddressType type = 10;
+    string addr = 20;
+}
+
+message SctpEndpoint {
+    uint32 num_ip_addrs = 10;
+    repeated IpAddress ip_addr_list = 20;
+    uint32 port_num = 30;
+}
+
+
+
+enum MsgType {
+	INVALID_MSG_TYPE = 0;
+    CU_CP_E1_SETUP_REQUEST = 1;
+    CU_CP_E1_SETUP_RESPONSE = 2;
+    CU_UP_E1_SETUP_REQUEST = 3;
+    CU_UP_E1_SETUP_RESPONSE = 4;
+    CU_CP_CONFIGURATION_UPDATE = 5;
+    CU_CP_CONFIGURATION_UPDATE_ACK = 6;
+    CU_UP_CONFIGURATION_UPDATE = 7;
+    CU_UP_CONFIGURATION_UPDATE_ACK = 8;
+    CU_CP_E1_RESET = 9;
+    CU_CP_E1_RESET_ACK = 10;
+    CU_UP_E1_RESET = 11;
+    CU_UP_E1_RESET_ACK = 12;
+    CU_CP_E1_RELEASE_REQUEST = 13;
+    CU_CP_E1_RELEASE_RESPONSE = 14;
+    CU_UP_E1_RELEASE_REQUEST = 15;
+    CU_UP_E1_RELEASE_RESPONSE = 16;
+    BEARER_CONTEXT_SETUP_REQUEST = 17;
+    BEARER_CONTEXT_SETUP_RESPONSE = 18;
+    BEARER_CONTEXT_MODIFY_REQUEST = 19;
+    BEARER_CONTEXT_MODIFY_RESPONSE = 20;
+    BEARER_CONTEXT_RELEASE_COMMAND = 21;
+    BEARER_CONTEXT_RELEASE_COMPLETE = 22;
+    BEARER_CONTEXT_INACTIVITY_NOTIFICATION = 23;
+    BEARER_CONTEXT_RELEASE_REQUEST = 24;
+    DL_DATA_NOTIFICATION = 25;
+    DATA_USAGE_REPORT = 26;
+    CU_UP_COUNTER_CHECK_REQUEST = 27;
+    UL_DATA_NOTIFICATION = 28;
+    MR_DC_DATA_USAGE_REPORT = 29;
+    CU_UP_BEARER_CTX_MODIFICATION_CONFIRM = 30;
+    CU_CP_ERROR_INDICATION = 31;
+    CU_UP_E1_SETUP_FAILURE = 32;
+    CU_UP_CONFIGURATION_UPDATE_FAILURE = 33;
+}

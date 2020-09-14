@@ -1,0 +1,738 @@
+ASN_MODULE_SRCS=	\
+	Criticality.c	\
+	Presence.c	\
+	PrivateIE-ID.c	\
+	ProcedureCode.c	\
+	ProtocolExtensionID.c	\
+	ProtocolIE-ID.c	\
+	TriggeringMessage.c	\
+	ProtocolIE-Container.c	\
+	ProtocolIE-SingleContainer.c	\
+	ProtocolIE-Field.c	\
+	ProtocolIE-ContainerList.c	\
+	ProtocolExtensionContainer.c	\
+	ProtocolExtensionField.c	\
+	PrivateIE-Container.c	\
+	PrivateIE-Field.c	\
+	ActivityInformation.c	\
+	ActivityNotificationLevel.c	\
+	AveragingWindow.c	\
+	BearerContextStatusChange.c	\
+	BitRate.c	\
+	Cause.c	\
+	CauseMisc.c	\
+	CauseProtocol.c	\
+	CauseRadioNetwork.c	\
+	CauseTransport.c	\
+	Cell-Group-Information.c	\
+	Cell-Group-Information-Item.c	\
+	Cell-Group-ID.c	\
+	CipheringAlgorithm.c	\
+	CNSupport.c	\
+	CommonNetworkInstance.c	\
+	ConfidentialityProtectionIndication.c	\
+	ConfidentialityProtectionResult.c	\
+	CP-TNL-Information.c	\
+	CriticalityDiagnostics.c	\
+	CriticalityDiagnostics-IE-List.c	\
+	Data-Forwarding-Information-Request.c	\
+	Data-Forwarding-Information.c	\
+	Data-Forwarding-Request.c	\
+	Data-Usage-per-PDU-Session-Report.c	\
+	Data-Usage-per-QoS-Flow-List.c	\
+	Data-Usage-per-QoS-Flow-Item.c	\
+	Data-Usage-Report-List.c	\
+	Data-Usage-Report-Item.c	\
+	DefaultDRB.c	\
+	DiscardTimer.c	\
+	DL-TX-Stop.c	\
+	DRB-Activity.c	\
+	DRB-Activity-List.c	\
+	DRB-Activity-Item.c	\
+	DRB-Confirm-Modified-List-EUTRAN.c	\
+	DRB-Confirm-Modified-Item-EUTRAN.c	\
+	DRB-Confirm-Modified-List-NG-RAN.c	\
+	DRB-Confirm-Modified-Item-NG-RAN.c	\
+	DRB-Failed-List-EUTRAN.c	\
+	DRB-Failed-Item-EUTRAN.c	\
+	DRB-Failed-Mod-List-EUTRAN.c	\
+	DRB-Failed-Mod-Item-EUTRAN.c	\
+	DRB-Failed-List-NG-RAN.c	\
+	DRB-Failed-Item-NG-RAN.c	\
+	DRB-Failed-Mod-List-NG-RAN.c	\
+	DRB-Failed-Mod-Item-NG-RAN.c	\
+	DRB-Failed-To-Modify-List-EUTRAN.c	\
+	DRB-Failed-To-Modify-Item-EUTRAN.c	\
+	DRB-Failed-To-Modify-List-NG-RAN.c	\
+	DRB-Failed-To-Modify-Item-NG-RAN.c	\
+	DRB-ID.c	\
+	DRB-Modified-List-EUTRAN.c	\
+	DRB-Modified-Item-EUTRAN.c	\
+	DRB-Modified-List-NG-RAN.c	\
+	DRB-Modified-Item-NG-RAN.c	\
+	DRB-Required-To-Modify-List-EUTRAN.c	\
+	DRB-Required-To-Modify-Item-EUTRAN.c	\
+	DRB-Required-To-Modify-List-NG-RAN.c	\
+	DRB-Required-To-Modify-Item-NG-RAN.c	\
+	DRB-Setup-List-EUTRAN.c	\
+	DRB-Setup-Item-EUTRAN.c	\
+	DRB-Setup-Mod-List-EUTRAN.c	\
+	DRB-Setup-Mod-Item-EUTRAN.c	\
+	DRB-Setup-List-NG-RAN.c	\
+	DRB-Setup-Item-NG-RAN.c	\
+	DRB-Setup-Mod-List-NG-RAN.c	\
+	DRB-Setup-Mod-Item-NG-RAN.c	\
+	DRB-Status-Item.c	\
+	DRBs-Subject-To-Counter-Check-List-EUTRAN.c	\
+	DRBs-Subject-To-Counter-Check-Item-EUTRAN.c	\
+	DRBs-Subject-To-Counter-Check-List-NG-RAN.c	\
+	DRBs-Subject-To-Counter-Check-Item-NG-RAN.c	\
+	DRB-To-Modify-List-EUTRAN.c	\
+	DRB-To-Modify-Item-EUTRAN.c	\
+	DRB-To-Modify-List-NG-RAN.c	\
+	DRB-To-Modify-Item-NG-RAN.c	\
+	DRB-To-Remove-List-EUTRAN.c	\
+	DRB-To-Remove-Item-EUTRAN.c	\
+	DRB-Required-To-Remove-List-EUTRAN.c	\
+	DRB-Required-To-Remove-Item-EUTRAN.c	\
+	DRB-To-Remove-List-NG-RAN.c	\
+	DRB-To-Remove-Item-NG-RAN.c	\
+	DRB-Required-To-Remove-List-NG-RAN.c	\
+	DRB-Required-To-Remove-Item-NG-RAN.c	\
+	DRB-To-Setup-List-EUTRAN.c	\
+	DRB-To-Setup-Item-EUTRAN.c	\
+	DRB-To-Setup-Mod-List-EUTRAN.c	\
+	DRB-To-Setup-Mod-Item-EUTRAN.c	\
+	DRB-To-Setup-List-NG-RAN.c	\
+	DRB-To-Setup-Item-NG-RAN.c	\
+	DRB-To-Setup-Mod-List-NG-RAN.c	\
+	DRB-To-Setup-Mod-Item-NG-RAN.c	\
+	DRB-Usage-Report-List.c	\
+	DRB-Usage-Report-Item.c	\
+	Duplication-Activation.c	\
+	Dynamic5QIDescriptor.c	\
+	DataDiscardRequired.c	\
+	EncryptionKey.c	\
+	Endpoint-IP-address-and-port.c	\
+	EUTRANAllocationAndRetentionPriority.c	\
+	EUTRAN-QoS-Support-List.c	\
+	EUTRAN-QoS-Support-Item.c	\
+	EUTRAN-QoS.c	\
+	GNB-CU-CP-Name.c	\
+	GNB-CU-CP-UE-E1AP-ID.c	\
+	GNB-CU-UP-Capacity.c	\
+	GNB-CU-UP-CellGroupRelatedConfiguration.c	\
+	GNB-CU-UP-CellGroupRelatedConfiguration-Item.c	\
+	GNB-CU-UP-ID.c	\
+	GNB-CU-UP-Name.c	\
+	GNB-CU-UP-UE-E1AP-ID.c	\
+	GNB-CU-CP-TNLA-Setup-Item.c	\
+	GNB-CU-CP-TNLA-Failed-To-Setup-Item.c	\
+	GNB-CU-CP-TNLA-To-Add-Item.c	\
+	GNB-CU-CP-TNLA-To-Remove-Item.c	\
+	GNB-CU-CP-TNLA-To-Update-Item.c	\
+	GNB-CU-UP-TNLA-To-Remove-Item.c	\
+	GBR-QosInformation.c	\
+	GBR-QoSFlowInformation.c	\
+	GTP-TEID.c	\
+	GTPTunnel.c	\
+	GNB-CU-UP-OverloadInformation.c	\
+	GNB-DU-ID.c	\
+	HFN.c	\
+	IntegrityProtectionIndication.c	\
+	IntegrityProtectionAlgorithm.c	\
+	IntegrityProtectionKey.c	\
+	IntegrityProtectionResult.c	\
+	Inactivity-Timer.c	\
+	MaxDataBurstVolume.c	\
+	MaximumIPdatarate.c	\
+	MaxIPrate.c	\
+	MaxPacketLossRate.c	\
+	MRDC-Data-Usage-Report-Item.c	\
+	MRDC-Usage-Information.c	\
+	NetworkInstance.c	\
+	New-UL-TNL-Information-Required.c	\
+	NGRANAllocationAndRetentionPriority.c	\
+	NG-RAN-QoS-Support-List.c	\
+	NG-RAN-QoS-Support-Item.c	\
+	Non-Dynamic5QIDescriptor.c	\
+	NR-Cell-Identity.c	\
+	NR-CGI.c	\
+	NR-CGI-Support-List.c	\
+	NR-CGI-Support-Item.c	\
+	OutOfOrderDelivery.c	\
+	PacketDelayBudget.c	\
+	PacketErrorRate.c	\
+	PER-Scalar.c	\
+	PER-Exponent.c	\
+	PDCP-Configuration.c	\
+	PDCP-Count.c	\
+	PDCP-SN-Status-Request.c	\
+	PDCP-DataRecovery.c	\
+	PDCP-Duplication.c	\
+	PDCP-Reestablishment.c	\
+	PDU-Session-Resource-Data-Usage-List.c	\
+	PDU-Session-Resource-Data-Usage-Item.c	\
+	PDCP-SN.c	\
+	PDCP-SN-Size.c	\
+	PDCP-SN-Status-Information.c	\
+	DRBBStatusTransfer.c	\
+	PDU-Session-ID.c	\
+	PDU-Session-Resource-Activity.c	\
+	PDU-Session-Resource-Activity-List.c	\
+	PDU-Session-Resource-Activity-Item.c	\
+	PDU-Session-Resource-Confirm-Modified-List.c	\
+	PDU-Session-Resource-Confirm-Modified-Item.c	\
+	PDU-Session-Resource-Failed-List.c	\
+	PDU-Session-Resource-Failed-Item.c	\
+	PDU-Session-Resource-Failed-Mod-List.c	\
+	PDU-Session-Resource-Failed-Mod-Item.c	\
+	PDU-Session-Resource-Failed-To-Modify-List.c	\
+	PDU-Session-Resource-Failed-To-Modify-Item.c	\
+	PDU-Session-Resource-Modified-List.c	\
+	PDU-Session-Resource-Modified-Item.c	\
+	PDU-Session-Resource-Required-To-Modify-List.c	\
+	PDU-Session-Resource-Required-To-Modify-Item.c	\
+	PDU-Session-Resource-Setup-List.c	\
+	PDU-Session-Resource-Setup-Item.c	\
+	PDU-Session-Resource-Setup-Mod-List.c	\
+	PDU-Session-Resource-Setup-Mod-Item.c	\
+	PDU-Session-Resource-To-Modify-List.c	\
+	PDU-Session-Resource-To-Modify-Item.c	\
+	PDU-Session-Resource-To-Remove-List.c	\
+	PDU-Session-Resource-To-Remove-Item.c	\
+	PDU-Session-Resource-To-Setup-List.c	\
+	PDU-Session-Resource-To-Setup-Item.c	\
+	PDU-Session-Resource-To-Setup-Mod-List.c	\
+	PDU-Session-Resource-To-Setup-Mod-Item.c	\
+	PDU-Session-To-Notify-List.c	\
+	PDU-Session-To-Notify-Item.c	\
+	PDU-Session-Type.c	\
+	PLMN-Identity.c	\
+	PortNumber.c	\
+	PPI.c	\
+	PriorityLevel.c	\
+	Pre-emptionCapability.c	\
+	Pre-emptionVulnerability.c	\
+	QCI.c	\
+	QoS-Characteristics.c	\
+	QoS-Flow-Identifier.c	\
+	QoS-Flow-List.c	\
+	QoS-Flow-Item.c	\
+	QoS-Flow-Failed-List.c	\
+	QoS-Flow-Failed-Item.c	\
+	QoS-Flow-Mapping-List.c	\
+	QoS-Flow-Mapping-Item.c	\
+	QoS-Flow-Mapping-Indication.c	\
+	QoS-Parameters-Support-List.c	\
+	QoSPriorityLevel.c	\
+	QoS-Flow-QoS-Parameter-List.c	\
+	QoS-Flow-QoS-Parameter-Item.c	\
+	QoSFlowLevelQoSParameters.c	\
+	RANUEID.c	\
+	RAT-Type.c	\
+	RLC-Mode.c	\
+	ROHC-Parameters.c	\
+	ROHC.c	\
+	SecurityAlgorithm.c	\
+	SecurityIndication.c	\
+	SecurityInformation.c	\
+	SecurityResult.c	\
+	Slice-Support-List.c	\
+	Slice-Support-Item.c	\
+	SNSSAI.c	\
+	SDAP-Configuration.c	\
+	SDAP-Header-DL.c	\
+	SDAP-Header-UL.c	\
+	TimeToWait.c	\
+	TNLAssociationUsage.c	\
+	TransportLayerAddress.c	\
+	TransactionID.c	\
+	T-Reordering.c	\
+	T-ReorderingTimer.c	\
+	TypeOfError.c	\
+	UE-Activity.c	\
+	UE-associatedLogicalE1-ConnectionItem.c	\
+	UL-Configuration.c	\
+	ULDataSplitThreshold.c	\
+	UP-Parameters.c	\
+	UP-Parameters-Item.c	\
+	UPSecuritykey.c	\
+	UP-TNL-Information.c	\
+	UplinkOnlyROHC.c	\
+	Reset.c	\
+	ResetType.c	\
+	ResetAll.c	\
+	UE-associatedLogicalE1-ConnectionListRes.c	\
+	ResetAcknowledge.c	\
+	UE-associatedLogicalE1-ConnectionListResAck.c	\
+	ErrorIndication.c	\
+	GNB-CU-UP-E1SetupRequest.c	\
+	SupportedPLMNs-List.c	\
+	SupportedPLMNs-Item.c	\
+	GNB-CU-UP-E1SetupResponse.c	\
+	GNB-CU-UP-E1SetupFailure.c	\
+	GNB-CU-CP-E1SetupRequest.c	\
+	GNB-CU-CP-E1SetupResponse.c	\
+	GNB-CU-CP-E1SetupFailure.c	\
+	GNB-CU-UP-ConfigurationUpdate.c	\
+	GNB-CU-UP-TNLA-To-Remove-List.c	\
+	GNB-CU-UP-ConfigurationUpdateAcknowledge.c	\
+	GNB-CU-UP-ConfigurationUpdateFailure.c	\
+	GNB-CU-CP-ConfigurationUpdate.c	\
+	GNB-CU-CP-TNLA-To-Add-List.c	\
+	GNB-CU-CP-TNLA-To-Remove-List.c	\
+	GNB-CU-CP-TNLA-To-Update-List.c	\
+	GNB-CU-CP-ConfigurationUpdateAcknowledge.c	\
+	GNB-CU-CP-TNLA-Setup-List.c	\
+	GNB-CU-CP-TNLA-Failed-To-Setup-List.c	\
+	GNB-CU-CP-ConfigurationUpdateFailure.c	\
+	E1ReleaseRequest.c	\
+	E1ReleaseResponse.c	\
+	BearerContextSetupRequest.c	\
+	System-BearerContextSetupRequest.c	\
+	BearerContextSetupResponse.c	\
+	System-BearerContextSetupResponse.c	\
+	BearerContextSetupFailure.c	\
+	BearerContextModificationRequest.c	\
+	System-BearerContextModificationRequest.c	\
+	BearerContextModificationResponse.c	\
+	System-BearerContextModificationResponse.c	\
+	BearerContextModificationFailure.c	\
+	BearerContextModificationRequired.c	\
+	System-BearerContextModificationRequired.c	\
+	BearerContextModificationConfirm.c	\
+	System-BearerContextModificationConfirm.c	\
+	BearerContextReleaseCommand.c	\
+	BearerContextReleaseComplete.c	\
+	BearerContextReleaseRequest.c	\
+	DRB-Status-List.c	\
+	BearerContextInactivityNotification.c	\
+	DLDataNotification.c	\
+	ULDataNotification.c	\
+	DataUsageReport.c	\
+	GNB-CU-UP-CounterCheckRequest.c	\
+	System-GNB-CU-UP-CounterCheckRequest.c	\
+	GNB-CU-UP-StatusIndication.c	\
+	MRDC-DataUsageReport.c	\
+	PrivateMessage.c	\
+	E1AP-PDU.c	\
+	InitiatingMessage.c	\
+	SuccessfulOutcome.c	\
+	UnsuccessfulOutcome.c
+
+ASN_MODULE_HDRS=	\
+	Criticality.h	\
+	Presence.h	\
+	PrivateIE-ID.h	\
+	ProcedureCode.h	\
+	ProtocolExtensionID.h	\
+	ProtocolIE-ID.h	\
+	TriggeringMessage.h	\
+	ProtocolIE-Container.h	\
+	ProtocolIE-SingleContainer.h	\
+	ProtocolIE-Field.h	\
+	ProtocolIE-ContainerList.h	\
+	ProtocolExtensionContainer.h	\
+	ProtocolExtensionField.h	\
+	PrivateIE-Container.h	\
+	PrivateIE-Field.h	\
+	ActivityInformation.h	\
+	ActivityNotificationLevel.h	\
+	AveragingWindow.h	\
+	BearerContextStatusChange.h	\
+	BitRate.h	\
+	Cause.h	\
+	CauseMisc.h	\
+	CauseProtocol.h	\
+	CauseRadioNetwork.h	\
+	CauseTransport.h	\
+	Cell-Group-Information.h	\
+	Cell-Group-Information-Item.h	\
+	Cell-Group-ID.h	\
+	CipheringAlgorithm.h	\
+	CNSupport.h	\
+	CommonNetworkInstance.h	\
+	ConfidentialityProtectionIndication.h	\
+	ConfidentialityProtectionResult.h	\
+	CP-TNL-Information.h	\
+	CriticalityDiagnostics.h	\
+	CriticalityDiagnostics-IE-List.h	\
+	Data-Forwarding-Information-Request.h	\
+	Data-Forwarding-Information.h	\
+	Data-Forwarding-Request.h	\
+	Data-Usage-per-PDU-Session-Report.h	\
+	Data-Usage-per-QoS-Flow-List.h	\
+	Data-Usage-per-QoS-Flow-Item.h	\
+	Data-Usage-Report-List.h	\
+	Data-Usage-Report-Item.h	\
+	DefaultDRB.h	\
+	DiscardTimer.h	\
+	DL-TX-Stop.h	\
+	DRB-Activity.h	\
+	DRB-Activity-List.h	\
+	DRB-Activity-Item.h	\
+	DRB-Confirm-Modified-List-EUTRAN.h	\
+	DRB-Confirm-Modified-Item-EUTRAN.h	\
+	DRB-Confirm-Modified-List-NG-RAN.h	\
+	DRB-Confirm-Modified-Item-NG-RAN.h	\
+	DRB-Failed-List-EUTRAN.h	\
+	DRB-Failed-Item-EUTRAN.h	\
+	DRB-Failed-Mod-List-EUTRAN.h	\
+	DRB-Failed-Mod-Item-EUTRAN.h	\
+	DRB-Failed-List-NG-RAN.h	\
+	DRB-Failed-Item-NG-RAN.h	\
+	DRB-Failed-Mod-List-NG-RAN.h	\
+	DRB-Failed-Mod-Item-NG-RAN.h	\
+	DRB-Failed-To-Modify-List-EUTRAN.h	\
+	DRB-Failed-To-Modify-Item-EUTRAN.h	\
+	DRB-Failed-To-Modify-List-NG-RAN.h	\
+	DRB-Failed-To-Modify-Item-NG-RAN.h	\
+	DRB-ID.h	\
+	DRB-Modified-List-EUTRAN.h	\
+	DRB-Modified-Item-EUTRAN.h	\
+	DRB-Modified-List-NG-RAN.h	\
+	DRB-Modified-Item-NG-RAN.h	\
+	DRB-Required-To-Modify-List-EUTRAN.h	\
+	DRB-Required-To-Modify-Item-EUTRAN.h	\
+	DRB-Required-To-Modify-List-NG-RAN.h	\
+	DRB-Required-To-Modify-Item-NG-RAN.h	\
+	DRB-Setup-List-EUTRAN.h	\
+	DRB-Setup-Item-EUTRAN.h	\
+	DRB-Setup-Mod-List-EUTRAN.h	\
+	DRB-Setup-Mod-Item-EUTRAN.h	\
+	DRB-Setup-List-NG-RAN.h	\
+	DRB-Setup-Item-NG-RAN.h	\
+	DRB-Setup-Mod-List-NG-RAN.h	\
+	DRB-Setup-Mod-Item-NG-RAN.h	\
+	DRB-Status-Item.h	\
+	DRBs-Subject-To-Counter-Check-List-EUTRAN.h	\
+	DRBs-Subject-To-Counter-Check-Item-EUTRAN.h	\
+	DRBs-Subject-To-Counter-Check-List-NG-RAN.h	\
+	DRBs-Subject-To-Counter-Check-Item-NG-RAN.h	\
+	DRB-To-Modify-List-EUTRAN.h	\
+	DRB-To-Modify-Item-EUTRAN.h	\
+	DRB-To-Modify-List-NG-RAN.h	\
+	DRB-To-Modify-Item-NG-RAN.h	\
+	DRB-To-Remove-List-EUTRAN.h	\
+	DRB-To-Remove-Item-EUTRAN.h	\
+	DRB-Required-To-Remove-List-EUTRAN.h	\
+	DRB-Required-To-Remove-Item-EUTRAN.h	\
+	DRB-To-Remove-List-NG-RAN.h	\
+	DRB-To-Remove-Item-NG-RAN.h	\
+	DRB-Required-To-Remove-List-NG-RAN.h	\
+	DRB-Required-To-Remove-Item-NG-RAN.h	\
+	DRB-To-Setup-List-EUTRAN.h	\
+	DRB-To-Setup-Item-EUTRAN.h	\
+	DRB-To-Setup-Mod-List-EUTRAN.h	\
+	DRB-To-Setup-Mod-Item-EUTRAN.h	\
+	DRB-To-Setup-List-NG-RAN.h	\
+	DRB-To-Setup-Item-NG-RAN.h	\
+	DRB-To-Setup-Mod-List-NG-RAN.h	\
+	DRB-To-Setup-Mod-Item-NG-RAN.h	\
+	DRB-Usage-Report-List.h	\
+	DRB-Usage-Report-Item.h	\
+	Duplication-Activation.h	\
+	Dynamic5QIDescriptor.h	\
+	DataDiscardRequired.h	\
+	EncryptionKey.h	\
+	Endpoint-IP-address-and-port.h	\
+	EUTRANAllocationAndRetentionPriority.h	\
+	EUTRAN-QoS-Support-List.h	\
+	EUTRAN-QoS-Support-Item.h	\
+	EUTRAN-QoS.h	\
+	GNB-CU-CP-Name.h	\
+	GNB-CU-CP-UE-E1AP-ID.h	\
+	GNB-CU-UP-Capacity.h	\
+	GNB-CU-UP-CellGroupRelatedConfiguration.h	\
+	GNB-CU-UP-CellGroupRelatedConfiguration-Item.h	\
+	GNB-CU-UP-ID.h	\
+	GNB-CU-UP-Name.h	\
+	GNB-CU-UP-UE-E1AP-ID.h	\
+	GNB-CU-CP-TNLA-Setup-Item.h	\
+	GNB-CU-CP-TNLA-Failed-To-Setup-Item.h	\
+	GNB-CU-CP-TNLA-To-Add-Item.h	\
+	GNB-CU-CP-TNLA-To-Remove-Item.h	\
+	GNB-CU-CP-TNLA-To-Update-Item.h	\
+	GNB-CU-UP-TNLA-To-Remove-Item.h	\
+	GBR-QosInformation.h	\
+	GBR-QoSFlowInformation.h	\
+	GTP-TEID.h	\
+	GTPTunnel.h	\
+	GNB-CU-UP-OverloadInformation.h	\
+	GNB-DU-ID.h	\
+	HFN.h	\
+	IntegrityProtectionIndication.h	\
+	IntegrityProtectionAlgorithm.h	\
+	IntegrityProtectionKey.h	\
+	IntegrityProtectionResult.h	\
+	Inactivity-Timer.h	\
+	MaxDataBurstVolume.h	\
+	MaximumIPdatarate.h	\
+	MaxIPrate.h	\
+	MaxPacketLossRate.h	\
+	MRDC-Data-Usage-Report-Item.h	\
+	MRDC-Usage-Information.h	\
+	NetworkInstance.h	\
+	New-UL-TNL-Information-Required.h	\
+	NGRANAllocationAndRetentionPriority.h	\
+	NG-RAN-QoS-Support-List.h	\
+	NG-RAN-QoS-Support-Item.h	\
+	Non-Dynamic5QIDescriptor.h	\
+	NR-Cell-Identity.h	\
+	NR-CGI.h	\
+	NR-CGI-Support-List.h	\
+	NR-CGI-Support-Item.h	\
+	OutOfOrderDelivery.h	\
+	PacketDelayBudget.h	\
+	PacketErrorRate.h	\
+	PER-Scalar.h	\
+	PER-Exponent.h	\
+	PDCP-Configuration.h	\
+	PDCP-Count.h	\
+	PDCP-SN-Status-Request.h	\
+	PDCP-DataRecovery.h	\
+	PDCP-Duplication.h	\
+	PDCP-Reestablishment.h	\
+	PDU-Session-Resource-Data-Usage-List.h	\
+	PDU-Session-Resource-Data-Usage-Item.h	\
+	PDCP-SN.h	\
+	PDCP-SN-Size.h	\
+	PDCP-SN-Status-Information.h	\
+	DRBBStatusTransfer.h	\
+	PDU-Session-ID.h	\
+	PDU-Session-Resource-Activity.h	\
+	PDU-Session-Resource-Activity-List.h	\
+	PDU-Session-Resource-Activity-Item.h	\
+	PDU-Session-Resource-Confirm-Modified-List.h	\
+	PDU-Session-Resource-Confirm-Modified-Item.h	\
+	PDU-Session-Resource-Failed-List.h	\
+	PDU-Session-Resource-Failed-Item.h	\
+	PDU-Session-Resource-Failed-Mod-List.h	\
+	PDU-Session-Resource-Failed-Mod-Item.h	\
+	PDU-Session-Resource-Failed-To-Modify-List.h	\
+	PDU-Session-Resource-Failed-To-Modify-Item.h	\
+	PDU-Session-Resource-Modified-List.h	\
+	PDU-Session-Resource-Modified-Item.h	\
+	PDU-Session-Resource-Required-To-Modify-List.h	\
+	PDU-Session-Resource-Required-To-Modify-Item.h	\
+	PDU-Session-Resource-Setup-List.h	\
+	PDU-Session-Resource-Setup-Item.h	\
+	PDU-Session-Resource-Setup-Mod-List.h	\
+	PDU-Session-Resource-Setup-Mod-Item.h	\
+	PDU-Session-Resource-To-Modify-List.h	\
+	PDU-Session-Resource-To-Modify-Item.h	\
+	PDU-Session-Resource-To-Remove-List.h	\
+	PDU-Session-Resource-To-Remove-Item.h	\
+	PDU-Session-Resource-To-Setup-List.h	\
+	PDU-Session-Resource-To-Setup-Item.h	\
+	PDU-Session-Resource-To-Setup-Mod-List.h	\
+	PDU-Session-Resource-To-Setup-Mod-Item.h	\
+	PDU-Session-To-Notify-List.h	\
+	PDU-Session-To-Notify-Item.h	\
+	PDU-Session-Type.h	\
+	PLMN-Identity.h	\
+	PortNumber.h	\
+	PPI.h	\
+	PriorityLevel.h	\
+	Pre-emptionCapability.h	\
+	Pre-emptionVulnerability.h	\
+	QCI.h	\
+	QoS-Characteristics.h	\
+	QoS-Flow-Identifier.h	\
+	QoS-Flow-List.h	\
+	QoS-Flow-Item.h	\
+	QoS-Flow-Failed-List.h	\
+	QoS-Flow-Failed-Item.h	\
+	QoS-Flow-Mapping-List.h	\
+	QoS-Flow-Mapping-Item.h	\
+	QoS-Flow-Mapping-Indication.h	\
+	QoS-Parameters-Support-List.h	\
+	QoSPriorityLevel.h	\
+	QoS-Flow-QoS-Parameter-List.h	\
+	QoS-Flow-QoS-Parameter-Item.h	\
+	QoSFlowLevelQoSParameters.h	\
+	RANUEID.h	\
+	RAT-Type.h	\
+	RLC-Mode.h	\
+	ROHC-Parameters.h	\
+	ROHC.h	\
+	SecurityAlgorithm.h	\
+	SecurityIndication.h	\
+	SecurityInformation.h	\
+	SecurityResult.h	\
+	Slice-Support-List.h	\
+	Slice-Support-Item.h	\
+	SNSSAI.h	\
+	SDAP-Configuration.h	\
+	SDAP-Header-DL.h	\
+	SDAP-Header-UL.h	\
+	TimeToWait.h	\
+	TNLAssociationUsage.h	\
+	TransportLayerAddress.h	\
+	TransactionID.h	\
+	T-Reordering.h	\
+	T-ReorderingTimer.h	\
+	TypeOfError.h	\
+	UE-Activity.h	\
+	UE-associatedLogicalE1-ConnectionItem.h	\
+	UL-Configuration.h	\
+	ULDataSplitThreshold.h	\
+	UP-Parameters.h	\
+	UP-Parameters-Item.h	\
+	UPSecuritykey.h	\
+	UP-TNL-Information.h	\
+	UplinkOnlyROHC.h	\
+	Reset.h	\
+	ResetType.h	\
+	ResetAll.h	\
+	UE-associatedLogicalE1-ConnectionListRes.h	\
+	ResetAcknowledge.h	\
+	UE-associatedLogicalE1-ConnectionListResAck.h	\
+	ErrorIndication.h	\
+	GNB-CU-UP-E1SetupRequest.h	\
+	SupportedPLMNs-List.h	\
+	SupportedPLMNs-Item.h	\
+	GNB-CU-UP-E1SetupResponse.h	\
+	GNB-CU-UP-E1SetupFailure.h	\
+	GNB-CU-CP-E1SetupRequest.h	\
+	GNB-CU-CP-E1SetupResponse.h	\
+	GNB-CU-CP-E1SetupFailure.h	\
+	GNB-CU-UP-ConfigurationUpdate.h	\
+	GNB-CU-UP-TNLA-To-Remove-List.h	\
+	GNB-CU-UP-ConfigurationUpdateAcknowledge.h	\
+	GNB-CU-UP-ConfigurationUpdateFailure.h	\
+	GNB-CU-CP-ConfigurationUpdate.h	\
+	GNB-CU-CP-TNLA-To-Add-List.h	\
+	GNB-CU-CP-TNLA-To-Remove-List.h	\
+	GNB-CU-CP-TNLA-To-Update-List.h	\
+	GNB-CU-CP-ConfigurationUpdateAcknowledge.h	\
+	GNB-CU-CP-TNLA-Setup-List.h	\
+	GNB-CU-CP-TNLA-Failed-To-Setup-List.h	\
+	GNB-CU-CP-ConfigurationUpdateFailure.h	\
+	E1ReleaseRequest.h	\
+	E1ReleaseResponse.h	\
+	BearerContextSetupRequest.h	\
+	System-BearerContextSetupRequest.h	\
+	BearerContextSetupResponse.h	\
+	System-BearerContextSetupResponse.h	\
+	BearerContextSetupFailure.h	\
+	BearerContextModificationRequest.h	\
+	System-BearerContextModificationRequest.h	\
+	BearerContextModificationResponse.h	\
+	System-BearerContextModificationResponse.h	\
+	BearerContextModificationFailure.h	\
+	BearerContextModificationRequired.h	\
+	System-BearerContextModificationRequired.h	\
+	BearerContextModificationConfirm.h	\
+	System-BearerContextModificationConfirm.h	\
+	BearerContextReleaseCommand.h	\
+	BearerContextReleaseComplete.h	\
+	BearerContextReleaseRequest.h	\
+	DRB-Status-List.h	\
+	BearerContextInactivityNotification.h	\
+	DLDataNotification.h	\
+	ULDataNotification.h	\
+	DataUsageReport.h	\
+	GNB-CU-UP-CounterCheckRequest.h	\
+	System-GNB-CU-UP-CounterCheckRequest.h	\
+	GNB-CU-UP-StatusIndication.h	\
+	MRDC-DataUsageReport.h	\
+	PrivateMessage.h	\
+	E1AP-PDU.h	\
+	InitiatingMessage.h	\
+	SuccessfulOutcome.h	\
+	UnsuccessfulOutcome.h
+
+ASN_MODULE_HDRS+=ANY.h
+ASN_MODULE_SRCS+=ANY.c
+ASN_MODULE_HDRS+=OCTET_STRING.h
+ASN_MODULE_HDRS+=OPEN_TYPE.h
+ASN_MODULE_SRCS+=OPEN_TYPE.c
+ASN_MODULE_HDRS+=constr_CHOICE.h
+ASN_MODULE_HDRS+=INTEGER.h
+ASN_MODULE_SRCS+=INTEGER.c
+ASN_MODULE_HDRS+=NativeEnumerated.h
+ASN_MODULE_SRCS+=NativeEnumerated.c
+ASN_MODULE_HDRS+=NativeInteger.h
+ASN_MODULE_SRCS+=NativeInteger.c
+ASN_MODULE_HDRS+=OBJECT_IDENTIFIER.h
+ASN_MODULE_SRCS+=OBJECT_IDENTIFIER.c
+ASN_MODULE_HDRS+=PrintableString.h
+ASN_MODULE_SRCS+=PrintableString.c
+ASN_MODULE_HDRS+=asn_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=asn_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=asn_SET_OF.h
+ASN_MODULE_SRCS+=asn_SET_OF.c
+ASN_MODULE_SRCS+=constr_CHOICE.c
+ASN_MODULE_HDRS+=constr_SEQUENCE.h
+ASN_MODULE_SRCS+=constr_SEQUENCE.c
+ASN_MODULE_HDRS+=constr_SEQUENCE_OF.h
+ASN_MODULE_SRCS+=constr_SEQUENCE_OF.c
+ASN_MODULE_HDRS+=constr_SET_OF.h
+ASN_MODULE_SRCS+=constr_SET_OF.c
+ASN_MODULE_HDRS+=asn_application.h
+ASN_MODULE_SRCS+=asn_application.c
+ASN_MODULE_HDRS+=asn_ioc.h
+ASN_MODULE_HDRS+=asn_system.h
+ASN_MODULE_HDRS+=asn_codecs.h
+ASN_MODULE_HDRS+=asn_internal.h
+ASN_MODULE_SRCS+=asn_internal.c
+ASN_MODULE_HDRS+=asn_random_fill.h
+ASN_MODULE_SRCS+=asn_random_fill.c
+ASN_MODULE_HDRS+=asn_bit_data.h
+ASN_MODULE_SRCS+=asn_bit_data.c
+ASN_MODULE_SRCS+=OCTET_STRING.c
+ASN_MODULE_HDRS+=BIT_STRING.h
+ASN_MODULE_SRCS+=BIT_STRING.c
+ASN_MODULE_SRCS+=asn_codecs_prim.c
+ASN_MODULE_HDRS+=asn_codecs_prim.h
+ASN_MODULE_HDRS+=ber_tlv_length.h
+ASN_MODULE_SRCS+=ber_tlv_length.c
+ASN_MODULE_HDRS+=ber_tlv_tag.h
+ASN_MODULE_SRCS+=ber_tlv_tag.c
+ASN_MODULE_HDRS+=ber_decoder.h
+ASN_MODULE_SRCS+=ber_decoder.c
+ASN_MODULE_HDRS+=der_encoder.h
+ASN_MODULE_SRCS+=der_encoder.c
+ASN_MODULE_HDRS+=constr_TYPE.h
+ASN_MODULE_SRCS+=constr_TYPE.c
+ASN_MODULE_HDRS+=constraints.h
+ASN_MODULE_SRCS+=constraints.c
+ASN_MODULE_HDRS+=xer_support.h
+ASN_MODULE_SRCS+=xer_support.c
+ASN_MODULE_HDRS+=xer_decoder.h
+ASN_MODULE_SRCS+=xer_decoder.c
+ASN_MODULE_HDRS+=xer_encoder.h
+ASN_MODULE_SRCS+=xer_encoder.c
+ASN_MODULE_HDRS+=per_support.h
+ASN_MODULE_SRCS+=per_support.c
+ASN_MODULE_HDRS+=per_decoder.h
+ASN_MODULE_SRCS+=per_decoder.c
+ASN_MODULE_HDRS+=per_encoder.h
+ASN_MODULE_SRCS+=per_encoder.c
+ASN_MODULE_HDRS+=per_opentype.h
+ASN_MODULE_SRCS+=per_opentype.c
+ASN_MODULE_HDRS+=oer_decoder.h
+ASN_MODULE_HDRS+=oer_encoder.h
+ASN_MODULE_HDRS+=oer_support.h
+ASN_MODULE_SRCS+=oer_decoder.c
+ASN_MODULE_SRCS+=oer_encoder.c
+ASN_MODULE_SRCS+=oer_support.c
+ASN_MODULE_SRCS+=OPEN_TYPE_oer.c
+ASN_MODULE_SRCS+=INTEGER_oer.c
+ASN_MODULE_SRCS+=BIT_STRING_oer.c
+ASN_MODULE_SRCS+=OCTET_STRING_oer.c
+ASN_MODULE_SRCS+=NativeInteger_oer.c
+ASN_MODULE_SRCS+=NativeEnumerated_oer.c
+ASN_MODULE_SRCS+=constr_CHOICE_oer.c
+ASN_MODULE_SRCS+=constr_SEQUENCE_oer.c
+ASN_MODULE_SRCS+=constr_SET_OF_oer.c
+
+ASN_MODULE_CFLAGS=
+
+lib_LTLIBRARIES+=libasncodec.la
+libasncodec_la_SOURCES=$(ASN_MODULE_SRCS) $(ASN_MODULE_HDRS)
+libasncodec_la_CPPFLAGS=-I$(top_srcdir)/
+libasncodec_la_CFLAGS=$(ASN_MODULE_CFLAGS)
+libasncodec_la_LDFLAGS=-lm
