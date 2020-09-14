@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.appname}}
+  labels:
+    app: {{.Values.appname}}
+spec:
+  ports:
+  - port: 2379
+    targetPort: 2379
+    name: etcd-server
+  clusterIP: None
+  selector:
+    app: myetcd
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: etcd-server
+spec:
+  selector:
+    matchLabels:
+      app: myetcd # has to match .spec.template.metadata.labels
+  serviceName: "myetcd"  #声明它属于哪个Headless Service.
+  replicas: 1 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: myetcd # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: {{.Values.appname}}
+        image: {{.Values.image.repository}}:{{.Values.image.tag}}
+        ports:
+        - containerPort: 2379
+          name: etcd-server
+        volumeMounts:
+        - name: etcdstore
+          mountPath: /usr/etcd/data
+        - name: etcd-conf
+          mountPath: /etc/etcd/etcd.conf
+          #subPath: etcd-conf
+        command: ["etcd"]
+        args: ["--config-file=/etc/etcd/etcd.conf/etcd.conf"]
+          #command: ["ls"]
+          #args: ["/etc/etcd/etcd.conf/"]
+      volumes:
+          - name: etcd-conf
+            configMap:
+                    name: {{ .Release.Name }}-config
+  volumeClaimTemplates:   #可看作pvc的模板
+  - metadata:
+      name: etcdstore
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "local-storage-etcd"  #存储类名，改为集群中已存在的
+      resources:
+        requests:
+          storage: 1Gi
