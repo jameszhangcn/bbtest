@@ -96,7 +96,6 @@ build_service() {
 	binary=$2
 	source=$3
 	echo "Building the Micro-services($binary)..."
-	cd $(echo $BUILD_DIR/src/$source/impl/$directory/main | tr -d '\r')
 
 	if [ "$binary" == "simucucp" ]; then
 		CGO_ENABLED=1
@@ -104,14 +103,39 @@ build_service() {
 		CGO_ENABLED=0
 	fi
 	if [[ "$binary" != "myetcd" ]] && [[ "$binary" != "mynats" ]]; then
-	    rm -rf $BUILD_DIR/src/$source/deployment/$directory/$binary
-	    GOOS=linux GOARCH=amd64 go build --v -gcflags "-N -l" -o $BUILD_DIR/src/$source/deployment/$directory/$binary main.go
-	    [ $? -ne 0  ] && exit 1
+	    if [ "$binary" != "testcases" ]; then
+	        cd $(echo $BUILD_DIR/src/$source/impl/$directory/main | tr -d '\r')
+	        rm -rf $BUILD_DIR/src/$source/deployment/$directory/$binary
+	        GOOS=linux GOARCH=amd64 go build --v -gcflags "-N -l" -o $BUILD_DIR/src/$source/deployment/$directory/$binary main.go
+	        [ $? -ne 0  ] && exit 1
+	    fi 
+	    if [ "$binary" == "testcases" ]; then
+	        echo "Building the sos ..."
+	        cd $(echo $BUILD_DIR/src/$source/impl/$directory | tr -d '\r')
+	        rm -rf $BUILD_DIR/src/$source/deployment/$directory/sos
+	        mkdir -p $BUILD_DIR/src/$source/deployment/$directory/sos
+		for dirgo in $(ls .)
+		do
+	            echo "Building the sos ($dir)..."
+		    if [ -d $dirgo ]; then
+		        files=$(ls $dirgo)
+		        for gofile in $files
+		        do
+			    filename=`echo "$gofile" | cut -f 1 -d '.'`
+	                    echo "Building the sos file ($filename).($gofile).."
+		            echo $filename
+	                    GOOS=linux GOARCH=amd64 go build -buildmode=plugin -o $BUILD_DIR/src/$source/deployment/$directory/sos/$filename.so ./$dirgo/$gofile
+	                    [ $? -ne 0  ] && exit 1
+	                done
+	            fi
+		done
+	    fi
         else
-	    rm -rf $BUILD_DIR/src/$source/deployment/$directory/$binary
-	    mkdir -p $BUILD_DIR/src/$source/deployment/$directory
-            cp ./$binary $BUILD_DIR/src/$source/deployment/$directory
-	    [ $? -ne 0  ] && exit 1
+	        cd $(echo $BUILD_DIR/src/$source/impl/$directory/main | tr -d '\r')
+	        rm -rf $BUILD_DIR/src/$source/deployment/$directory/$binary
+	        mkdir -p $BUILD_DIR/src/$source/deployment/$directory
+                cp ./$binary $BUILD_DIR/src/$source/deployment/$directory
+	        [ $? -ne 0  ] && exit 1
 	fi
 }
 
@@ -161,23 +185,6 @@ check_bin_files() {
 }
 
 #############################################################
-# copy necessary files produced by dataplane build
-#############################################################
-copy_dataplane_files() {
-	echo "Staring to copy dataplane files"
-    
-    globaltag=` echo $TAG | sed 's/[-_]/./g'`
-    
-	DP_PACKAGE_DIR=${UPDP_PLTF}-UPDP-$TAG
-
-	cp -rf $TOP_DIR/$DP_PACKAGE_DIR/deployment/charts/bccsvc $TOP_DIR/$DEPLOYMENT_DIR/charts/cuup/charts
-	cp -rf $TOP_DIR/$DP_PACKAGE_DIR/images/bccsvc $TOP_DIR/$IMAGE_DIR/
-    sed -i 's/GLOBALTAG/'$globaltag'/' $TOP_DIR/$IMAGE_DIR/bccsvc/build.sh
-	rm -rf $TOP_DIR/$DP_PACKAGE_DIR/
-	echo "Complete copying dataplane files"
-}
-
-#############################################################
 # copy necessary files into package and do packaging
 #############################################################
 copy_files() {
@@ -196,26 +203,18 @@ copy_files() {
 
 	# Copy the chart
 	cp -rf $APP_DIR/charts $TOP_DIR/$DEPLOYMENT_DIR
-    sed -i 's/GLOBALTAG/'$globaltag'/' $TOP_DIR/$DEPLOYMENT_DIR/charts/cuup/values.yaml    
+    sed -i 's/GLOBALTAG/'$globaltag'/' $TOP_DIR/$DEPLOYMENT_DIR/charts/bbtest/values.yaml    
 
-    [ -d $TOP_DIR/$DEPLOYMENT_DIR/charts/cuup/config/mgmt ] || mkdir -p $TOP_DIR/$DEPLOYMENT_DIR/charts/cuup/config/mgmt
-    cp -rf $APP_DIR/config/mgmt/common/* $TOP_DIR/$DEPLOYMENT_DIR/charts/cuup/config/mgmt
-
-    [ -d $TOP_DIR/$DEPLOYMENT_DIR/charts/cuup/config/static ] || mkdir -p $TOP_DIR/$DEPLOYMENT_DIR/charts/cuup/config/static
-	cp -rf $APP_DIR/config/static/common/* $TOP_DIR/$DEPLOYMENT_DIR/charts/cuup/config/static	
+    [ -d $TOP_DIR/$DEPLOYMENT_DIR/charts/bbtest/config ] || mkdir -p $TOP_DIR/$DEPLOYMENT_DIR/charts/bbtest/config
+    cp -rf $APP_DIR/config/* $TOP_DIR/$DEPLOYMENT_DIR/charts/bbtest/config
 
 	# Copy the scripts
 	cp -rf $APP_DIR/ProductBuild.config $TOP_DIR/$SCRIPT_DIR
-	[ -z "$SKIP_DP" ] && (sed -i -e '/MICRO_SERVICES/{s|$|\n    bccsvc:bccsvc:up_dp|}' $TOP_DIR/$SCRIPT_DIR/ProductBuild.config)
 	cp -rf $APP_DIR/SrvToSvc.config $TOP_DIR/$SCRIPT_DIR
-	[ -z "$SKIP_DP" ] && (sed -i -e '/gwsvc/{s|$|\nbccsvc:bccsvc|}' $TOP_DIR/$SCRIPT_DIR/SrvToSvc.config)
 	cp -rf $APP_DIR/install_images.sh $TOP_DIR/$SCRIPT_DIR
 	cp -rf $APP_DIR/installChart.sh $TOP_DIR/$SCRIPT_DIR
 	cp -rf $APP_DIR/install.sh $TOP_DIR/$SCRIPT_DIR
 	cp -rf $APP_DIR/launch.sh $TOP_DIR/$SCRIPT_DIR
-#	cp -rf $APP_DIR/install_patch.sh $TOP_DIR/$SCRIPT_DIR
-#   cp -rf $APP_DIR/deployment/dbSchema $TOP_DIR/$SCRIPT_DIR
-
 }
 
 packaging() {
@@ -228,7 +227,7 @@ packaging() {
 	echo "$PACKAGE_DIR.tar.gz successfully generated."
 }
 
-BUILD_UBUNTU() {
+BUILD_BBTEST() {
 	echo "BUILD_RHEL:making output structure..."
 	[ -z "$BUILD_ENV" ] && create_output_structure
 
@@ -241,12 +240,6 @@ BUILD_UBUNTU() {
 	echo "BUILD_RHEL:making copy_files..."
 	echo
 	[ -z "$BUILD_ENV" ] && copy_files
-	
-	echo "BUILD_RHEL:building dataplane..."	
-	[ -z "$BUILD_ENV" ] && [ -z "$SKIP_DP" ] && build_up_dp
-	
-	# copy dataplane files
-	[ -z "$BUILD_ENV" ] && [ -z "$SKIP_DP" ] && copy_dataplane_files
 	
 	packaging
 	
@@ -301,7 +294,7 @@ SCRIPT_DIR=$PACKAGE_DIR/scripts
 DEPLOYMENT_DIR=$PACKAGE_DIR/deployment
 
 case $PRODUCT in
-BBTEST)     BUILD_UBUNTU;;
+BBTEST)     BUILD_BBTEST;;
 esac
 
 exit

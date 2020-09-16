@@ -1,0 +1,49 @@
+{
+	"jobid": "10001",
+	"scopes": [
+		{
+			"name": "E1",
+			"scenarios": [
+				{
+					"name": "E1SETUP",
+					"testcases": [
+						{
+						    "name": "NORMAL",
+							"isrun": true
+						},
+						{
+							"name": "FAILURE",
+							"isrun": true
+						},
+						{
+							"name": "RESET",
+							"isrun": false
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "BEARER",
+			"scenarios": [
+				{
+					"name": "BEARER_SETUP",
+					"testcases": [
+						{
+						    "name": "NORMAL",
+							"isrun": false
+						},
+						{
+							"name": "FAILURE",
+							"isrun": false
+						},
+						{
+							"name": "RELEASE",
+							"isrun": false
+						}
+					]
+				}
+			]
+		}
+	]
+}

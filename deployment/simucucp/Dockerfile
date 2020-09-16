@@ -1,4 +1,4 @@
-FROM simucucp:v2 AS final
+FROM ubuntu:17.04 AS final
 WORKDIR /root
 COPY ./libasn1.so /usr/lib/
 COPY ./simucucp /root/

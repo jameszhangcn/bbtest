@@ -2,6 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 global:
-        author: James
+        author: JamesZhang
         testname: CUUP-BBOX-TESTING
+        tag: GLOBALTAG
 
