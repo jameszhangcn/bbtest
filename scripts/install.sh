@@ -35,7 +35,7 @@ installCNF(){
 }
 
 installBbtest(){
-  $HELMCMD install --kubeconfig $KUBE_CONFIG  local-repo/bbtest --version  v0.0.1  --name  cuup
+  $HELMCMD install --kubeconfig $KUBE_CONFIG  localchartmuseum/bbtest --name  bbtest
 }
 
 

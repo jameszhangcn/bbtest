@@ -50,32 +50,20 @@ nfsvcversion=`sed -n -e '/version/ s/version:\(.*\)/\1/p' ./$nfsvc/Chart.yaml | 
 echo "ls -al ./$nfsvc/charts/"
 ls -al ./$nfsvc/charts/
 sed -i 's/GLOBALHUBURL/'$huburl'/' $nfsvc/values.yaml
-# sed -i 's/COUCHBASEIP/'$couchbaseip'/' $nfsvc/values.yaml
-# sed -i "s/PODSLABEL/'\"true\"'/g" $nfsvc/values.yaml
-# sed -i '/serverName/s/"serverName":".*",/"serverName":"'$couchbaseip'",/g' $nfsvc/config/mgmt/storeware.json
 
 $HELMCMD package ./$nfsvc
-# rm -f  ./$nf/charts/$nfsvc"-"*.tgz
 ls -al $nfsvc-$version.tgz
-
-
-#cp  $nfsvc"-"$nfsvcversion".tgz" ./$nf/charts
-#ls -al ./$nf/charts
-
-#sed -i '/'$nfsvc'/,/repo/ s/^#//g' ./$nf/requirements.yaml
-
-#$HELMCMD package ./$nf
 
 charts=$charts" $nfsvc-$nfsvcversion.tgz "
 
-[ -d "/repo/charts/" ] || ((cd / && mkdir repo && cd repo && ln -s /data/chartrepo/charts charts) && \
-(cd /root && mkdir chartrepo && cd /root/chartrepo && ln -s /data/chartrepo/charts charts))
+#[ -d "/home/localrepo/" ] || [ cd /home && mkdir localrepo ]
 
 ls  -al $charts
-cp -f $charts /repo/charts/
+cp -f $charts /home/localrepo/
 curdir=`pwd`
-cd /repo/charts/
-echo "in /repo/charts/"
+cd /home/localrepo/
+echo "in /home/localrepo/"
+chmod 755 ./
 ls -al $charts
 cd $curdir
 

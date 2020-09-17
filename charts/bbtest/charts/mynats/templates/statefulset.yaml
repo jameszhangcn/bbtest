@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mynats
-        image: {{ .Values.global.hub }}/{{.Values.componentSpec.deployment.mynats.image}}:{{.Values.global.tag}}
+        image: {{ .Values.global.hub }}/{{.Values.componentSpec.deployment.mynats.image}}:{{.Values.componentSpec.deployment.mynats.tag}}
         ports:
         - containerPort: 4222
           name: nats-server

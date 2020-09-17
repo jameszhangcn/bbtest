@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simucucp
+  namespace: default
+  # annotations:
+  #       k8s.v1.cni.cncf.io/networks: cuup-macvlan-e1, macvlan-conf-1
+spec:
+  initContainers:
+          - name: init-nats-server
+            image: busybox:latest
+            command: ['sh', '-c', 'until nslookup myetcd; do echo waiting for etcd server; sleep 2; done;']
+  containers:
+  - name: simucucp
+    image: simucucp:v3
+    command: ["./simucucp"]
+    #command: ["/bin/sh"]
+    #args: ["-c", " sleep 30000"]
+    imagePullPolicy: IfNotPresent
+    securityContext:
+            capabilities:
+                add:
+                - NET_ADMIN
+  restartPolicy: OnFailure

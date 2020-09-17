@@ -108,6 +108,11 @@ build_service() {
 	        rm -rf $BUILD_DIR/src/$source/deployment/$directory/$binary
 	        GOOS=linux GOARCH=amd64 go build --v -gcflags "-N -l" -o $BUILD_DIR/src/$source/deployment/$directory/$binary main.go
 	        [ $? -ne 0  ] && exit 1
+		if [ "$binary" == "simucucp" ];then
+		  #copy libans1 to deployment
+		  $BUILD_DIR/src/bbtest/E1Codec/build.sh
+		  cp $BUILD_DIR/src/bbtest/E1Codec/libasn1.so $BUILD_DIR/src/$source/deployment/$directory/
+		fi
 	    fi 
 	    if [ "$binary" == "testcases" ]; then
 	        echo "Building the sos ..."

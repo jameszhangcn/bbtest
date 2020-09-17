@@ -27,7 +27,7 @@ echo "image_repo_IP:port="$huburl
 
 #configuration 
 #cdmdir="/data/cdm/"
-cdmworkdir=/home/localrepo
+cdmworkdir=/home/cdm
 #
 bakdir=$cdmworkdir"-bak"`date +%Y%m%d%H%M%S`
 
@@ -41,7 +41,7 @@ echo "run on local cdm"
 [ -d $cdmworkdir ] && mv $cdmworkdir $bakdir; mkdir -p $cdmworkdir
 echo "workdir on cdm="$cdmworkdir
 cp -r ../deployment/charts/* tag_list ../software_version $cdmworkdir
-cd $cdmworkdir;chmod a+x $cdmworkdir/*.sh;$cdmworkdir/sync-chart.sh  $srv $huburl
+cd $cdmworkdir;chmod a+x $cdmworkdir/*.sh;$cdmworkdir/sync-chart.sh  $srv $huburl $hostos
 else
 echo "run on remote cdm $cdmip"
 ssh $cdmip " [ -d $cdmworkdir ] && mv $cdmworkdir $bakdir; mkdir -p $cdmworkdir"
