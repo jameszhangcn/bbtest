@@ -110,8 +110,9 @@ build_service() {
 	        [ $? -ne 0  ] && exit 1
 		if [ "$binary" == "simucucp" ];then
 		  #copy libans1 to deployment
-		  $BUILD_DIR/src/bbtest/E1Codec/build.sh
-		  cp $BUILD_DIR/src/bbtest/E1Codec/libasn1.so $BUILD_DIR/src/$source/deployment/$directory/
+		  cd  $BUILD_DIR/src/bbtest/E1Codec
+		  ./build.sh
+		  cp -f libasn1.so $BUILD_DIR/src/$source/deployment/$directory/
 		fi
 	    fi 
 	    if [ "$binary" == "testcases" ]; then

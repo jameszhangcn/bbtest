@@ -6,19 +6,26 @@ metadata:
   # annotations:
   #       k8s.v1.cni.cncf.io/networks: cuup-macvlan-e1, macvlan-conf-1
 spec:
-  initContainers:
-          - name: init-nats-server
-            image: busybox:latest
-            command: ['sh', '-c', 'until nslookup myetcd; do echo waiting for etcd server; sleep 2; done;']
-  containers:
-  - name: simucucp
-    image: simucucp:v3
-    command: ["./simucucp"]
-    #command: ["/bin/sh"]
-    #args: ["-c", " sleep 30000"]
-    imagePullPolicy: IfNotPresent
-    securityContext:
-            capabilities:
-                add:
-                - NET_ADMIN
-  restartPolicy: OnFailure
+  replicas: 1
+  selector:
+          matchLabels:
+                  app: simucucp
+  template:
+          metadata:
+                  labels:
+                          app: simucucp
+          spec:
+              initContainers:
+                  - name: init-nats-server
+                    image: busybox:latest
+                    command: ['sh', '-c', 'until nslookup myetcd; do echo waiting for etcd server; sleep 2; done;']
+              containers:
+                  - name: {{.Values.componentSpec.deployment.container.image}}
+                    image: {{ .Values.global.hub }}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.componentSpec.deployment.container.tag}}
+                    command: ["./simucucp"]
+                    imagePullPolicy: IfNotPresent
+                    securityContext:
+                        capabilities:
+                         add:
+                           - NET_ADMIN
+                    restartPolicy: OnFailure

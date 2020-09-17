@@ -1,6 +1,6 @@
 #!/bin/sh
 echo -e "Start to build the docker image"
-svc="ctlsvc"
+svc="simuctl"
 tag=GLOBALTAG
 docker stop ${svc}
 docker rm ${svc}
