@@ -1,0 +1,5 @@
+port: 9090
+chartmuseum_uid: "1100"
+chartmuseum_gid: "1100"
+chart_repo_path: /data/chartrepo/
+chart_src_path: /repo/charts/

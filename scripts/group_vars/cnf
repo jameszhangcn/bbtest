@@ -1,0 +1,31 @@
+########## Ignored
+IGNORED: []
+
+########## CNF Layer
+CNF_DEFAULT_DEPLOYMENTS:
+  - cnf-app-podinfo
+  - details-v1
+  - hpa-sim
+  - httpbin
+  - httpbin-secure
+  - httpbin-secure
+  - log-app
+  - nginx
+  - productpage-v1
+  - ratings-v1
+  - reviews-canary
+  - reviews-production
+  - sleep
+
+CNF_APP_DEPLOYMENTS:
+  - mobilitymgr
+
+CNF_AMF_DEPLOYMENTS:
+  - amfee
+  - amfgw
+
+CNF_SMF_DEPLOYMENTS:
+  - pdusession
+
+CNF_INFRA_DEPLOYMENTS:
+  - mariadb

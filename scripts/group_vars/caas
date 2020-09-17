@@ -1,0 +1,10 @@
+########## Ignored
+IGNORED: []
+
+########## CAAS Layer - PODS
+CAAS_DEPLOYMENTS:
+  - calico-typha
+  - coredns
+  - dhcp-server
+  - kubernetes-dashboard
+  - tiller-deploy

@@ -1,0 +1,27 @@
+########## Ignored
+IGNORED: []
+
+########## PAAS Layer - PODS expected to be running
+PAAS_DEPLOYMENTS:
+  - certmanager
+  - dashboard
+  - grafana
+  - kiali
+  - kibana
+  - paas-elasticsearch-exporter
+  - paas-metallb-controller
+  - paas-metrics-server
+  - paas-prometheus-adapter
+  - paas-prometheus-alertmanager
+  - paas-prometheus-kube-state-metrics
+  - paas-prometheus-server
+  - traefik-ingress-controller
+  - istio-citadel
+  - istio-egressgateway
+  - istio-galley
+  - istio-ingressgateway
+  - istio-pilot
+  - istio-policy
+  - istio-sidecar-injector
+  - istio-telemetry
+  - istio-tracing

@@ -1,0 +1,16 @@
+cniSubnet: "192.168.0.0/16"
+serviceSubnet: "10.96.0.0/12"
+defaultNotReadyTolerationSeconds: "300"
+defaultUnreachableTolerationSeconds: "300"
+enableSctp: yes
+hpaDownscaleStabilization: "2m"
+nodeMonitorPeriod: "5s"
+nodeMonitorGracePeriod: "40s"
+podEvictionTimeout: "5m"
+nodeStatusUpdateFrequency: "5m"
+controlPlanelbAddress: "172.16.33.9"    #LoadBalancer IP which is reachable from CDM.
+controlPlanelbPort: "64433"           #LoadBalancer Port
+controlPlanelbIntf: "eth1"            #LoadBalancer Interface
+masterip: "192.168.56.210"
+mastername: "apple01"
+heartbeatport: "8765"

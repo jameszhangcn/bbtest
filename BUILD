@@ -211,10 +211,11 @@ copy_files() {
 	# Copy the scripts
 	cp -rf $APP_DIR/ProductBuild.config $TOP_DIR/$SCRIPT_DIR
 	cp -rf $APP_DIR/SrvToSvc.config $TOP_DIR/$SCRIPT_DIR
-	cp -rf $APP_DIR/install_images.sh $TOP_DIR/$SCRIPT_DIR
-	cp -rf $APP_DIR/installChart.sh $TOP_DIR/$SCRIPT_DIR
-	cp -rf $APP_DIR/install.sh $TOP_DIR/$SCRIPT_DIR
-	cp -rf $APP_DIR/launch.sh $TOP_DIR/$SCRIPT_DIR
+	cp -rf $APP_DIR/scripts/install_images.sh $TOP_DIR/$SCRIPT_DIR
+	cp -rf $APP_DIR/scripts/installChart.sh $TOP_DIR/$SCRIPT_DIR
+	cp -rf $APP_DIR/scripts/install.sh $TOP_DIR/$SCRIPT_DIR
+	cp -rf $APP_DIR/scripts/launch.sh $TOP_DIR/$SCRIPT_DIR
+	cp -rf $APP_DIR/scripts/inventory.ini $TOP_DIR/$SCRIPT_DIR
 }
 
 packaging() {

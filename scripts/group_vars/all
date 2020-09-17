@@ -1,0 +1,29 @@
+---
+##### file: group_vars/all
+# k8s install variables
+# containerd, docker, cri-o
+containerEngine: "docker"
+enableKataContainer: no
+useBlockStorage: no
+dockerVersion: "19.03.5"
+containerdVersion: "1.3.2"
+kubernetesVersion: "1.17.3"
+enableControlPlaneHA: no
+isStandalone: no
+
+# CaaS/Paas/CNF install variables
+HELM_BIN: /opt/cdm/bin/helm
+HELM_DEPLOY: /opt/cdm/pkg-manager/deployment
+HELM_JOBS: /opt/cdm/pkg-manager/jobs
+KUBECTL_BIN: /usr/bin/kubectl
+ADMIN_CONF: /opt/cdm/pkg-manager/conf/admin.conf
+LOG_FAILED_DEPLOYMENTS: /tmp/k8s_failed_deployments.log
+LOG_FAILED_STATEFUL_SETS: /tmp/k8s_failed_stateful_set.log
+LOG_FAILED_DAEMON_SETS: /tmp/k8s_failed_daemon_set.log
+LOG_FAILED_JOBS: /tmp/k8s_failed_jobs.log
+
+CONTAINER_RETRY_COUNT: 15
+CONTAINER_RETRY_INTERVAL: 15
+CONTAINER_WAIT_TIMEOUT: 15
+
+
