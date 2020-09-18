@@ -1,16 +1,16 @@
 package common
 
 import (
+	"bbtest/impl/simuctl/srvc/mail"
+	"bbtest/impl/simuctl/srvc/types"
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"reflect"
-	"bbtest/impl/simuctl/srvc/mail"
-	"time"
-	"bbtest/impl/simuctl/srvc/types"
 	"log"
 	"plugin"
+	"reflect"
+	"time"
 )
 
 var pathEtcdWaitingJob string
@@ -101,29 +101,34 @@ func Call(m map[string]interface{}, name string, params ...interface{}) (result 
 	return
 }
 
-func runPlugin(scope,scenario string, testcases []types.TestCase){
+func runPlugin(scope, scenario string, testcases []types.TestCase) {
 	soName := scope + "-" + scenario + ".so"
-	p,err := plugin.Open(soName)
+	p, err := plugin.Open(soName)
 	if err != nil {
 		log.Println("run Plugin open so failed : ", soName, err)
 		panic(err)
 	}
 	for _, testcase := range testcases {
 		if testcase.IsRun == true {
-		    caseName := scope + "_" + scenario + "_" + testcase.Name
-                    //find the function
-                    f,err := p.Lookup(caseName)
-                    if err != nil {
-			log.Println("run Plugin lookup func failed : ", caseName, err)
-                        panic(err)
-                    }
-                    //call the func
-		    f.(func())()
-                }
+			caseName := scope + "_" + scenario + "_" + testcase.Name
+			//find the function
+			f, err := p.Lookup(caseName)
+			if err != nil {
+				log.Println("run Plugin lookup func failed : ", caseName, err)
+				panic(err)
+			}
+			//call the func
+			f.(func())()
+		}
 	}
 }
 
 func RunJob(ctx context.Context) {
+
+	if types.JobInstance == nil {
+		fmt.Println("job instance not inited")
+		return
+	}
 	for _, scope := range types.JobInstance.Scopes {
 		for _, scenario := range scope.Scenarios {
 			name := "TC_" + scope.Name + "_" + scenario.Name
@@ -131,11 +136,11 @@ func RunJob(ctx context.Context) {
 			scenario.State = "INIT"
 			runPlugin(scope.Name, scenario.Name, scenario.TestCases)
 			//if _, ok := TC_TABLE[name]; ok != true {
-				//fmt.Println("TC not found: ", name)
-				//continue
+			//fmt.Println("TC not found: ", name)
+			//continue
 			//}
 			//if result, err := Call(TC_TABLE, name, scope.Name, scenario.Name); err == nil {
-				//fmt.Println("result", result, "err", err)
+			//fmt.Println("result", result, "err", err)
 			//}
 		}
 	}

@@ -49,6 +49,13 @@ spec:
           - name: etcd-conf
             configMap:
                     name: {{ .Release.Name }}-config
+      resources:
+          limits:
+              cpu: {{ .Values.componentSpec.deployment.container.resources.limits.cpu }}
+              memory: {{ .Values.componentSpec.deployment.container.resources.limits.memory }}
+          requests:
+              cpu: {{ .Values.componentSpec.deployment.container.resources.requests.cpu }}
+              memory: {{ .Values.componentSpec.deployment.container.resources.requests.memory }}
   volumeClaimTemplates:   #可看作pvc的模板
   - metadata:
       name: etcdstore

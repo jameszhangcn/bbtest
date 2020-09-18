@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{.Values.componentSpec.deployment.mynats.service}}
+  name: {{.Values.componentSpec.deployment.container.service}}
   labels:
     app: mynats
 spec:

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+        name: bbtest-cfg
+data:
+        {{- $files := .Files }}
+        {{- range tuple "jobs.json" }}
+        {{ . }}: |-
+          {{ $files.Get . }}
+        {{- end }}
+

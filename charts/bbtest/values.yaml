@@ -5,4 +5,17 @@ global:
         author: JamesZhang
         testname: CUUP-BBOX-TESTING
         tag: GLOBALTAG
+        hub: GLOBALHUBURL
+nf:
+        version: v1
+        nfType: bbtest
+        nfId: bbtest1
+
+        cnftpl_configmap:
+                job_cfg:
+                        create: true
+                        metaspec:
+                                annotations:
+                                        configJob: enabled
+
 

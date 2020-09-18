@@ -32,6 +32,7 @@ for svc in `echo $allsvc`
 do
     echo $svc
     mv ./$nfsvc/charts/$svc ./
+    chmod 777 ./*
     imgname=$svc
     imgtag=`grep ^$imgname tag_list |cut -d" " -f2`
     sed -i '/image:.*'$imgname'/,/tag/s/\(tag: \)\(.*\)/\1'$imgtag'/' $svc/values.yaml
@@ -63,10 +64,11 @@ cp -f $charts /home/localrepo/
 curdir=`pwd`
 cd /home/localrepo/
 echo "in /home/localrepo/"
-chmod 755 ./
+chmod 777 ./*
 ls -al $charts
-cd $curdir
+#cd $curdir
 
+chmod 755 *
 for i in `ls $charts`; do 
   echo pushing chart: $i; 
   url=`echo $i | sed -e 's/.tgz//' -e 's/-/\//'`

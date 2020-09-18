@@ -15,9 +15,26 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: {{.Values.componentSpec.deployment.container.image}}
+      - name: {{.Values.componentSpec.deployment.container.service}}
         image: {{ .Values.global.hub }}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.componentSpec.deployment.container.tag}}
         ports:
         - containerPort: 8765
-          name: {{.Values.componentSpec.deployment.container.image}}
+          name: {{.Values.componentSpec.deployment.container.service}}
         command: ["./simuctl"]
+        volumeMounts:
+                - mountPath: /opt/conf/
+                  name: job-config
+        resources:
+          limits:
+              cpu: {{ .Values.componentSpec.deployment.container.resources.limits.cpu }}
+              memory: {{ .Values.componentSpec.deployment.container.resources.limits.memory }}
+          requests:
+              cpu: {{ .Values.componentSpec.deployment.container.resources.requests.cpu }}
+              memory: {{ .Values.componentSpec.deployment.container.resources.requests.memory }}
+    volumes:
+            - configMap:
+                    items:
+                            - key: jobs.json
+                              path: jobs.json
+                    name: bbtest-job-config
+              name: job-config

@@ -18,3 +18,10 @@ spec:
       - name: {{.Values.componentSpec.deployment.container.image}}
         image: {{ .Values.global.hub }}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.componentSpec.deployment.container.tag}}
         command: ["./simucim"]
+        resources:
+          limits:
+              cpu: {{ .Values.componentSpec.deployment.container.resources.limits.cpu }}
+              memory: {{ .Values.componentSpec.deployment.container.resources.limits.memory }}
+          requests:
+              cpu: {{ .Values.componentSpec.deployment.container.resources.requests.cpu }}
+              memory: {{ .Values.componentSpec.deployment.container.resources.requests.memory }}

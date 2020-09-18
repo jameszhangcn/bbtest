@@ -15,9 +15,16 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: mynats
-        image: {{ .Values.global.hub }}/{{.Values.componentSpec.deployment.mynats.image}}:{{.Values.componentSpec.deployment.mynats.tag}}
+      - name: {{.Values.componentSpec.deployment.container.image}}
+        image: {{.Values.global.hub}}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.componentSpec.deployment.container.tag}}
         ports:
         - containerPort: 4222
           name: nats-server
-        command: ["./nats-server"]
+        command: ["./mynats"]
+        resources:
+          limits:
+              cpu: {{ .Values.componentSpec.deployment.container.resources.limits.cpu }}
+              memory: {{ .Values.componentSpec.deployment.container.resources.limits.memory }}
+          requests:
+              cpu: {{ .Values.componentSpec.deployment.container.resources.requests.cpu }}
+              memory: {{ .Values.componentSpec.deployment.container.resources.requests.memory }}

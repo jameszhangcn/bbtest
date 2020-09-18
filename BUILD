@@ -213,6 +213,7 @@ copy_files() {
 
     [ -d $TOP_DIR/$DEPLOYMENT_DIR/charts/bbtest/config ] || mkdir -p $TOP_DIR/$DEPLOYMENT_DIR/charts/bbtest/config
     cp -rf $APP_DIR/config/* $TOP_DIR/$DEPLOYMENT_DIR/charts/bbtest/config
+    cp -rf $APP_DIR/config/* $TOP_DIR/$DEPLOYMENT_DIR/charts/bbtest/charts/simuctl/config
 
 	# Copy the scripts
 	cp -rf $APP_DIR/ProductBuild.config $TOP_DIR/$SCRIPT_DIR

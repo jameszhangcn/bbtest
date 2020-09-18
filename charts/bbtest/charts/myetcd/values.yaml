@@ -2,6 +2,26 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+nf: 
+        version : v1
+        nfType: bbtest
+        nfId: bbtest1
+componentSpec:
+        deployment:
+                replicas: 1
+                container:
+                        hub: 192.168.56.200:30500
+                        image: myetcd
+                        tag: 1.0
+                        service: "myetcd"
+                        resources:
+                                limits:
+                                        cpu: "128m"
+                                        memory: "256Mi"
+                                requests:
+                                        cpu: "100m"
+                                        memory: "256Mi"
+
 replicaCount: 1
 appname: myetcd
 image:

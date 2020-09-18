@@ -15,8 +15,15 @@ componentSpec:
         deployment:
                 replicas: 1
                 container: 
-                    hub: 192.168.56.200:30500
-                    image: simucucp
-                    tag: 1.0
-                    env_svc_id: "simucucp-svc"
-                    service: "simucucp"
+                        hub: 192.168.56.200:30500
+                        image: simucucp
+                        tag: 1.0
+                        env_svc_id: "simucucp-svc"
+                        service: "simucucp"
+                        resources:
+                                limits:
+                                        cpu: "128m"
+                                        memory: "128Mi"
+                                requests:
+                                        cpu: "100m"
+                                        memory: "128Mi"
