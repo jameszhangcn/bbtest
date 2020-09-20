@@ -40,8 +40,8 @@ usage ()
 which docker
 [ $? -ne 0 ]&&echo "docker runtime not found!"&&exit 1
 
-baseimage_loaded=`docker images -q mone-rhel7.6:v2`
-[ -z "$baseimage_loaded" ]&&echo "Base image(mone-rhel7.6:v2) has not been loaded!"&&exit 2
+#baseimage_loaded=`docker images -q mone-rhel7.6:v2`
+#[ -z "$baseimage_loaded" ]&&echo "Base image(mone-rhel7.6:v2) has not been loaded!"&&exit 2
 
 TOP_DIR=`pwd | xargs dirname`
 echo "TOP_DIR=$TOP_DIR"
@@ -65,9 +65,9 @@ for microservice in $MICRO_SERVICES; do
     binary=`echo $microservice | cut -d: -f2`
     echo "Building the images($directory) ..."
     cd $IMAGE_DIR/$directory
-	[ "$binary" == "bccsvc" ] && binary="bccApp"
+	#[ "$binary" == "bccsvc" ] && binary="bccApp"
     microsvc_version=`ls -l --time-style='+%Y%m%d_%H%M%S' $binary | awk '{print $6}'`
-	[ "$binary" == "bccApp" ] && binary="bccsvc"
+	#[ "$binary" == "bccApp" ] && binary="bccsvc"
 #    tag="$binary:${VERSION}.$microsvc_version"
     tag="$binary:${VERSION}"
 #    docker stop $binary

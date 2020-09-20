@@ -102,7 +102,7 @@ func Call(m map[string]interface{}, name string, params ...interface{}) (result 
 }
 
 func runPlugin(scope, scenario string, testcases []types.TestCase) {
-	soName := scope + "-" + scenario + ".so"
+	soName := "TC_" + scope + "_" + scenario + ".so"
 	p, err := plugin.Open(soName)
 	if err != nil {
 		log.Println("run Plugin open so failed : ", soName, err)

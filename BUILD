@@ -130,7 +130,7 @@ build_service() {
 			    filename=`echo "$gofile" | cut -f 1 -d '.'`
 	                    echo "Building the sos file ($filename).($gofile).."
 		            echo $filename
-	                    GOOS=linux GOARCH=amd64 go build -buildmode=plugin -o $BUILD_DIR/src/$source/deployment/$directory/sos/$filename.so ./$dirgo/$gofile
+	                    GOOS=linux GOARCH=amd64 go build -buildmode=plugin -gcflags="all=-N -l" -o $BUILD_DIR/src/$source/deployment/$directory/sos/$filename.so ./$dirgo/$gofile
 	                    [ $? -ne 0  ] && exit 1
 	                done
 	            fi

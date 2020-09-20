@@ -70,6 +70,6 @@ echo "KUBE_CONFIG=$KUBE_CONFIG"
 prod="bbtest"
 
 ./install_images.sh $imgRepoUrl || exit 1
-./installChart.sh $prod $CHART_REPO_ADDR ubuntu
+./installChart.sh $prod $IMAGE_REPO_ADDR ubuntu
 ./install.sh uninstall $prod
 ./install.sh $prod

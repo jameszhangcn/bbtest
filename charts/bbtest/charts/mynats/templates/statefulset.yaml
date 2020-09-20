@@ -16,7 +16,11 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: {{.Values.componentSpec.deployment.container.image}}
+        {{- if and (.Values.global) (.Values.global.hub) (.Values.global.tag) }}
+        image: {{.Values.global.hub}}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.global.tag}}
+        {{- else }}
         image: {{.Values.global.hub}}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.componentSpec.deployment.container.tag}}
+        {{- end }}
         ports:
         - containerPort: 4222
           name: nats-server

@@ -1,20 +1,20 @@
 package config
 
 import (
+	"bbtest/impl/simuctl/srvc/common"
+	"bbtest/impl/simuctl/srvc/types"
 	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
-	"bbtest/impl/simuctl/srvc/common"
-	"bbtest/impl/simuctl/srvc/types"
 )
 
 var vsConfigJson = "./config/DAY1_vs.json"
 var vsConfigJsonUpdate = "./config/DAY1_vs_update.json"
 var threegppConfigJson = "./config/DAY1_3GPP.json"
-var jobAssignedFilePath = "/opt/conf/job-assigned.json"
+var jobAssignedFilePath = "/opt/conf/jobs.json"
 var dayOneConfigPath string
 
 var (
@@ -25,6 +25,7 @@ var (
 func init() {
 	log.SetPrefix("SIMUCTL-CONFIG: ")
 	log.SetFlags(log.Ldate | log.Lmicroseconds | log.Llongfile)
+	types.JobInstance = new(types.Job)
 }
 
 func LoadDay1Config() {
@@ -64,7 +65,7 @@ func SendConfigPatch() {
 
 func ReadJobAssigned() {
 	var content []byte
-	_,err:= os.Stat(jobAssignedFilePath)
+	_, err := os.Stat(jobAssignedFilePath)
 	log.Println("Job assigned info : ", err)
 	if os.IsNotExist(err) {
 		log.Println("No job to run....")
@@ -75,10 +76,10 @@ func ReadJobAssigned() {
 			log.Println("Job assigend read file error")
 			return
 		}
-		data:=types.JobInstance
+		data := types.JobInstance
 		err = json.Unmarshal(content, &data)
 		if err != nil {
-			log.Println("Job assigend unmarshal error: ",content)
+			log.Println("Job assigend unmarshal error: ", content)
 			return
 		}
 		//types.jobInstance = data
