@@ -195,7 +195,7 @@ check_bin_files() {
 #############################################################
 copy_files() {
 	echo "Starting to copy files"
-	
+	echo $TAG
     globaltag=` echo $TAG | sed 's/[-_]/./g'`
     
 	for microservice in $MICRO_SERVICES; do
@@ -205,6 +205,8 @@ copy_files() {
 		echo "Copying files for $directory ..."
 		cp -r $BUILD_DIR/src/$source/deployment/$directory/* $TOP_DIR/$IMAGE_DIR/$directory
         sed -i 's/GLOBALTAG/'$globaltag'/' $TOP_DIR/$IMAGE_DIR/$directory/build.sh
+		echo $globaltag
+		echo $TOP_DIR/$IMAGE_DIR/$directory
 	done
 
 	# Copy the chart

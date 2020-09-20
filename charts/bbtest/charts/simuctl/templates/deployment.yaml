@@ -31,10 +31,10 @@ spec:
           requests:
               cpu: {{ .Values.componentSpec.deployment.container.resources.requests.cpu }}
               memory: {{ .Values.componentSpec.deployment.container.resources.requests.memory }}
-    volumes:
-            - configMap:
+      volumes:
+              - configMap:
                     items:
                             - key: jobs.json
                               path: jobs.json
                     name: bbtest-job-config
-              name: job-config
+                name: job-config
