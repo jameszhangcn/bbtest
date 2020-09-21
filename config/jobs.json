@@ -5,7 +5,7 @@
 			"name": "E1",
 			"scenarios": [
 				{
-					"name": "E1SETUP",
+					"name": "SETUP",
 					"testcases": [
 						{
 						    "name": "NORMAL",
@@ -27,7 +27,7 @@
 			"name": "BEARER",
 			"scenarios": [
 				{
-					"name": "BEARER_SETUP",
+					"name": "SETUP",
 					"testcases": [
 						{
 						    "name": "NORMAL",

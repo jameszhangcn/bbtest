@@ -16,6 +16,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: {{.Values.componentSpec.deployment.container.service}}
+        imagePullPolicy: Always
         {{- if and (.Values.global) (.Values.global.hub) (.Values.global.tag) }}
         image: {{ .Values.global.hub }}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.global.tag}}
         {{- else }}
@@ -28,6 +29,8 @@ spec:
         volumeMounts:
                 - mountPath: /opt/conf/
                   name: job-config
+                - name: log-path
+                  mountPath: /tmp/logs/
         resources:
           limits:
               cpu: {{ .Values.componentSpec.deployment.container.resources.limits.cpu }}
@@ -40,5 +43,10 @@ spec:
                     items:
                             - key: jobs.json
                               path: jobs.json
+                            - key: log.json
+                              path: log.json
                     name: bbtest-job-config
                 name: job-config
+              - name: log-path
+                hostPath:
+                  path: /data/logs

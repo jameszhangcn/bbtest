@@ -1,0 +1,22 @@
+{
+	"console": {
+		"enable": true,
+		"level": "FINE"
+	},
+	"files": [
+		{
+			"enable": true,
+			"level": "DEBUG",
+			"filename": "/tmp/logs/test.log",
+			"category": "Test",
+			"pattern": "[%D %T] [%C] [%L] (%S) %M"
+		},
+		{
+			"enable": false,
+			"level": "DEBUG",
+			"filename": "/tmp/logs/test_rotate.log",
+			"category": "TestRotate",
+			"pattern": "[%D %T] [%C] [%L] (%S) %M"
+		}
+	]
+}

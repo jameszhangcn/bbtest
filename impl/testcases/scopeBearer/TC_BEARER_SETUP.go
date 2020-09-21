@@ -1,11 +1,12 @@
 package main
+
 import (
-	"fmt"
 	"bbtest/impl/simuctl/srvc/common"
+	"fmt"
 )
 
-func TC_BEARERCONTEXT_BEARER_SETUP_NORMAL(sco, sce string) {
-	fmt.Println("testing TC_BEARERCONTEXT_BEARER-SETUP-NORMAL")
+func TC_BEARER_SETUP_NORMAL(sco, sce string) {
+	fmt.Println("testing TC_BEARER_BEARER-SETUP-NORMAL")
 	common.GetScenarioMgt(sco, sce)
 	common.SetScenarioTO(5)
 	common.SetUp()
@@ -20,8 +21,8 @@ func TC_BEARERCONTEXT_BEARER_SETUP_NORMAL(sco, sce string) {
 	common.CleanUp()
 }
 
-func TC_BEARERCONTEXT_BEARER_SETUP_FAILURE(sco, sce string) {
-	fmt.Println("testing TC_BEARERCONTEXT_BEARER-SETUP-FAILURE")
+func TC_BEARER_SETUP_FAILURE(sco, sce string) {
+	fmt.Println("testing TC_BEARER_BEARER-SETUP-FAILURE")
 	common.GetScenarioMgt(sco, sce)
 	common.SetScenarioTO(5)
 	common.SetUp()
@@ -36,8 +37,8 @@ func TC_BEARERCONTEXT_BEARER_SETUP_FAILURE(sco, sce string) {
 	common.CleanUp()
 }
 
-func TC_BEARERCONTEXT_BEARER_RELEASE(sco, sce string) {
-	fmt.Println("testing TC_BEARERCONTEXT_BEARER-RELEASE")
+func TC_BEARER_RELEASE(sco, sce string) {
+	fmt.Println("testing TC_BEARER_BEARER-RELEASE")
 	common.GetScenarioMgt(sco, sce)
 	common.SetScenarioTO(5)
 	common.SetUp()

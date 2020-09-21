@@ -99,6 +99,8 @@ github.com/grpc-ecosystem/grpc-gateway v1.9.5/go.mod h1:vNeuVxBJEsws4ogUvrchl83t
 github.com/grpc-ecosystem/grpc-gateway v1.14.8 h1:hXClj+iFpmLM8i3lkO6i4Psli4P2qObQuQReiII26U8=
 github.com/grpc-ecosystem/grpc-gateway v1.14.8/go.mod h1:NZE8t6vs6TnwLL/ITkaK8W3ecMLGAbh2jXTclvpiwYo=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
+github.com/jeanphorn/log4go v0.0.0-20190526082429-7dbb8deb9468 h1:1C4yN/psU4rpTqmuN8ZU7uzMyIvM8m4m6xgy6W0e/5k=
+github.com/jeanphorn/log4go v0.0.0-20190526082429-7dbb8deb9468/go.mod h1:VRGsDaBwSjfG6KG3PtW5uoGc+iqzEG3jEdo2b1ZwSJc=
 github.com/jonboulle/clockwork v0.1.0/go.mod h1:Ii8DK3G1RaLaWxj9trq07+26W01tbo22gdxWY5EU2bo=
 github.com/jonboulle/clockwork v0.2.1 h1:S/EaQvW6FpWMYAvYvY+OBDvpaM+izu0oiwo5y0MH7U0=
 github.com/jonboulle/clockwork v0.2.1/go.mod h1:Pkfl5aHPm1nk2H9h0bjmnJD/BcgbGXUBGnn1kMkgxc8=
@@ -183,6 +185,8 @@ github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81P
 github.com/tmc/grpc-websocket-proxy v0.0.0-20170815181823-89b8d40f7ca8/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
 github.com/tmc/grpc-websocket-proxy v0.0.0-20200427203606-3cfed13b9966 h1:j6JEOq5QWFker+d7mFQYOhjTZonQ7YkLTHm56dbn+yM=
 github.com/tmc/grpc-websocket-proxy v0.0.0-20200427203606-3cfed13b9966/go.mod h1:ncp9v5uamzpCO7NfCPTXjqaC+bZgJeR0sMTm6dMHP7U=
+github.com/toolkits/file v0.0.0-20160325033739-a5b3c5147e07 h1:d/VUIMNTk65Xz69htmRPNfjypq2uNRqVsymcXQu6kKk=
+github.com/toolkits/file v0.0.0-20160325033739-a5b3c5147e07/go.mod h1:FbXpUxsx5in7z/OrWFDdhYetOy3/VGIJsVHN9G7RUPA=
 github.com/urfave/cli v1.20.0/go.mod h1:70zkFmudgCuE/ngEzBv17Jvp/497gISqfk5gWijbERA=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2 h1:eY9dn8+vbi4tKz5Qo6v2eYzo7kUS51QINcR5jNpbZS8=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=

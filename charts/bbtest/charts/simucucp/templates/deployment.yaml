@@ -21,6 +21,7 @@ spec:
                     command: ['sh', '-c', 'until nslookup myetcd; do echo waiting for etcd server; sleep 2; done;']
               containers:
                   - name: {{.Values.componentSpec.deployment.container.image}}
+                    imagePullPolicy: Always
                     image: {{ .Values.global.hub }}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.componentSpec.deployment.container.tag}}
                     command: ["./simucucp"]
                     imagePullPolicy: IfNotPresent

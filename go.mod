@@ -18,11 +18,14 @@ require (
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.14.8 // indirect
+	github.com/jeanphorn/log4go v0.0.0-20190526082429-7dbb8deb9468
 	github.com/jonboulle/clockwork v0.2.1 // indirect
 	github.com/nats-io/nats-server/v2 v2.1.8 // indirect
 	github.com/nats-io/nats.go v1.10.0
 	github.com/prometheus/client_golang v1.7.1 // indirect
+	github.com/sirupsen/logrus v1.4.2
 	github.com/tmc/grpc-websocket-proxy v0.0.0-20200427203606-3cfed13b9966 // indirect
+	github.com/toolkits/file v0.0.0-20160325033739-a5b3c5147e07 // indirect
 	go.etcd.io/bbolt v1.3.5 // indirect
 	go.etcd.io/etcd v0.0.0-00010101000000-000000000000
 	go.uber.org/zap v1.16.0 // indirect

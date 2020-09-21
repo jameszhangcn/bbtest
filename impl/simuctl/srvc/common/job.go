@@ -110,7 +110,7 @@ func runPlugin(scope, scenario string, testcases []types.TestCase) {
 	}
 	for _, testcase := range testcases {
 		if testcase.IsRun == true {
-			caseName := scope + "_" + scenario + "_" + testcase.Name
+			caseName := "TC_" + scope + "_" + scenario + "_" + testcase.Name
 			//find the function
 			f, err := p.Lookup(caseName)
 			if err != nil {
@@ -118,7 +118,7 @@ func runPlugin(scope, scenario string, testcases []types.TestCase) {
 				panic(err)
 			}
 			//call the func
-			f.(func())()
+			f.(func(string, string))(scope, scenario)
 		}
 	}
 }
@@ -156,6 +156,21 @@ func ShowJobResult() {
 			}
 		}
 	}
+}
+
+func SaveResultToNFS() {
+	result := make([]string, 0)
+	for _, scope := range types.JobInstance.Scopes {
+		fmt.Println("Scope: ", scope.Name)
+		for _, scenario := range scope.Scenarios {
+			if scenario.State != "INIT" {
+				fmt.Printf("| %-30s| %-20s|\n", scenario.Name, scenario.State)
+				ret := fmt.Sprintf("| %-30s| %-20s|\n", scenario.Name, scenario.State)
+				result = append(result, ret)
+			}
+		}
+	}
+	//TODO:
 }
 
 func PublishEmail() {

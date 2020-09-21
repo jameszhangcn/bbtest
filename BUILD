@@ -120,21 +120,22 @@ build_service() {
 	        cd $(echo $BUILD_DIR/src/$source/impl/$directory | tr -d '\r')
 	        rm -rf $BUILD_DIR/src/$source/deployment/$directory/sos
 	        mkdir -p $BUILD_DIR/src/$source/deployment/$directory/sos
-		for dirgo in $(ls .)
-		do
-	            echo "Building the sos ($dir)..."
-		    if [ -d $dirgo ]; then
-		        files=$(ls $dirgo)
-		        for gofile in $files
-		        do
-			    filename=`echo "$gofile" | cut -f 1 -d '.'`
-	                    echo "Building the sos file ($filename).($gofile).."
-		            echo $filename
-	                    GOOS=linux GOARCH=amd64 go build -buildmode=plugin -gcflags="all=-N -l" -o $BUILD_DIR/src/$source/deployment/$directory/sos/$filename.so ./$dirgo/$gofile
-	                    [ $? -ne 0  ] && exit 1
-	                done
-	            fi
-		done
+			for dirgo in $(ls .)
+			do
+					echo "Building the sos ($dir)..."
+				if [ -d $dirgo ]; then
+					files=$(ls $dirgo)
+					for gofile in $files
+					do
+					filename=`echo "$gofile" | cut -f 1 -d '.'`
+							echo "Building the sos file ($filename).($gofile).."
+						echo $filenam
+							GOOS=linux GOARCH=amd64 go build -buildmode=plugin -gcflags "-N -l" -o $BUILD_DIR/src/$source/deployment/$directory/sos/$filename.so ./$dirgo/$gofile
+							[ $? -ne 0  ] && exit 1
+						done
+					fi
+			done
+			cp -rf $BUILD_DIR/src/$source/deployment/$directory/sos/* $BUILD_DIR/src/$source/deployment/simuctl/sos/
 	    fi
         else
 	        cd $(echo $BUILD_DIR/src/$source/impl/$directory/main | tr -d '\r')

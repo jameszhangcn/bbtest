@@ -16,6 +16,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: {{.Values.componentSpec.deployment.container.image}}
+        imagePullPolicy: Always
         {{- if and (.Values.global) (.Values.global.hub) (.Values.global.tag) }}
         image: {{.Values.global.hub}}/{{.Values.componentSpec.deployment.container.image}}:{{.Values.global.tag}}
         {{- else }}
